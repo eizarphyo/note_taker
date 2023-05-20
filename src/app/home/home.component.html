@@ -43,6 +43,10 @@
     </form>
   </div>
 
+  <div class="no-notes" *ngIf="notes.length == 0">
+    <p>No new notes..</p>
+  </div>
+
   <div class="notes-wrapper">
     <div
       class="note"

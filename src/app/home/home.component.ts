@@ -27,18 +27,19 @@ export class HomeComponent {
 
 
   ngOnInit() {
+    console.log(this.notes.length);
+
     this.renderNotes();
   }
 
   // local storage ထဲက ဒေတာယူ၊ template မှာပြ
   renderNotes() {
     this.noteCount = Number(localStorage.getItem('count'));
-    console.log(this.noteCount);
 
     for (let i = 0; i < this.noteCount; i++) {
       let note: any = localStorage.getItem(`note${i}`);
       this.notes[i] = JSON.parse(note);
-      // console.log(note);
+      console.log(this.notes);
     }
   }
 
