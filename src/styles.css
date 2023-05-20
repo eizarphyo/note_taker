@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --red: #f28b82;
+    --orange: #fbbc04;
+    --blue: #aecbfa;
+    --pink: #fdcfe8;
+    --brown: #e6c9a8;
+
+    --yellow: #fff475;
+    --violet: #d7aefb;
+    --green: #ccff90;
+    --lightblue: #cbf0f8;
+    --teal: #a7ffeb;
+    
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: helvetica;
+}
+
+.container {
+    max-width: 1024px;
+    padding: 0 15px;
+    margin: auto;
+}

@@ -1,0 +1,87 @@
+<div class="container">
+  <h2>Notes</h2>
+
+  <div class="popup-container" *ngIf="showPopup">
+    <form class="popup">
+      <i class="fa fa-times" aria-hidden="true" (click)="closePopup()"></i>
+
+      <div class="content">
+        <input
+          class="text-field"
+          type="text"
+          placeholder="Title"
+          name="inputTitle"
+          [(ngModel)]="inputTitle"
+        />
+        <textarea
+          name=""
+          id=""
+          cols="30"
+          rows="5"
+          class="text-field"
+          placeholder="Note"
+          name="inputDescript"
+          [(ngModel)]="inputDescript"
+        ></textarea>
+      </div>
+
+      <div class="bg-colors">
+        <ng-container *ngFor="let color of colors">
+          <span
+            [class]="color"
+            (click)="setColor(color); select($event)"
+          ></span>
+        </ng-container>
+      </div>
+
+      <button
+        (click)="onClick()"
+        [disabled]="inputTitle == '' && inputDescript == ''"
+      >
+        {{ popupBtnName }}
+      </button>
+    </form>
+  </div>
+
+  <div class="notes-wrapper">
+    <div
+      class="note"
+      *ngFor="let note of notes; let i = index"
+      [class]="{
+        red: note.bgColor == 'red',
+        orange: note.bgColor == 'orange',
+        yellow: note.bgColor == 'yellow',
+        green: note.bgColor == 'green',
+        teal: note.bgColor == 'teal',
+        lightblue: note.bgColor == 'lightblue',
+        blue: note.bgColor == 'blue',
+        violet: note.bgColor == 'violet',
+        pink: note.bgColor == 'pink',
+        brown: note.bgColor == 'brown'
+      }"
+    >
+      <div class="details">
+        <p>{{ note.title }}</p>
+        <span>{{ note.description }}</span>
+      </div>
+
+      <div class="setting" (click)="openSetting(i)">
+        <div class="icon-box" *ngIf="showSettingIndex == i && showSetting">
+          <span (click)="edit(i)">
+            <i class="fa fa-pencil" aria-hidden="true"></i>Edit
+          </span>
+          <span (click)="deleteNote(i)">
+            <i class="fa fa-trash" aria-hidden="true"></i>Delete
+          </span>
+        </div>
+        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="add-btn-container">
+    <button (click)="openPopup()">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
