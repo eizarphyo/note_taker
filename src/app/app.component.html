@@ -1,1 +1,121 @@
+<div class="constrains">
+  <div class="loader-container" *ngIf="loading">
+    <div class="loader"></div>
+  </div>
+
+  <h2>Notes</h2>
+
+  <!-- POPUP BOX -->
+  <div class="popup-container" *ngIf="showPopup">
+    <form class="popup">
+      <i
+        class="fa fa-times close"
+        aria-hidden="true"
+        (click)="closePopup()"
+      ></i>
+
+      <div class="content">
+        <!-- TITLE -->
+        <input
+          class="text-field"
+          type="text"
+          placeholder="Title"
+          name="inputTitle"
+          [(ngModel)]="inputTitle"
+        />
+
+        <!-- DESCRIPTION -->
+        <textarea
+          name=""
+          id=""
+          cols="30"
+          rows="3"
+          class="text-field"
+          placeholder="Your note..."
+          name="inputDescript"
+          [(ngModel)]="inputDescript"
+        ></textarea>
+      </div>
+
+      <div class="popup-foot">
+        <!-- COLOR PALETTE -->
+        <div class="bg-colors">
+          <ng-container *ngFor="let color of colors; let i = index">
+            <div
+              style="background-color: {{ color }};"
+              (click)="setColor(color); select($event)"
+            ></div>
+          </ng-container>
+        </div>
+        <!-- CREATE/UPDATE BUTTON -->
+        <button
+          (click)="onClick()"
+          [disabled]="inputTitle == '' && inputDescript == ''"
+        >
+          {{ popupBtnName }}
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- END POPUP -->
+
+  <div class="no-notes" *ngIf="notes.length == 0">
+    <p>No notes..</p>
+  </div>
+
+  <!-- NOTES -->
+  <div class="notes-wrapper">
+    <div
+      class="note"
+      *ngFor="let note of notes; let i = index; trackBy: trackByNoteId"
+      style="background-color: {{ note.bgColor }};"
+    >
+      <div class="details" (click)="showNoteDetails(i)">
+        <div>{{ note.title }}</div>
+        <div>{{ note.content }}</div>
+      </div>
+
+      <!-- SETTING BOX -->
+      <div class="setting">
+        <div class="icon-box" *ngIf="showSettingIndex == i && showSetting">
+          <span (click)="edit(i)">
+            <i class="fa fa-pencil" aria-hidden="true"></i>Edit
+          </span>
+          <span (click)="deleteNote(i)">
+            <i class="fa fa-trash" aria-hidden="true"></i>Delete
+          </span>
+        </div>
+        <i
+          class="fa fa-ellipsis-h"
+          aria-hidden="true"
+          (click)="openSetting(i)"
+        ></i>
+      </div>
+    </div>
+
+    <ng-container *ngIf="showNoteDetailsBox">
+      <div
+        class="details-container"
+        style="background-color: {{ noteDetails.bgColor }}"
+      >
+        <div>{{ noteDetails.title }}</div>
+        <div>{{ noteDetails.content }}</div>
+        <i
+          class="fa fa-times"
+          aria-hidden="true"
+          (click)="closeNoteDetialsBox()"
+        ></i>
+      </div>
+    </ng-container>
+  </div>
+  <!-- END NOTES -->
+
+  <!-- CREATE NOTE BUTTON -->
+  <div class="add-btn-container">
+    <button (click)="openPopup()">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+
 <router-outlet></router-outlet>

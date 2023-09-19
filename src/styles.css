@@ -11,7 +11,6 @@
     --green: #ccff90;
     --lightblue: #cbf0f8;
     --teal: #a7ffeb;
-    
 }
 
 * {
@@ -23,7 +22,7 @@ body {
     font-family: helvetica;
 }
 
-.container {
+.constrains {
     max-width: 1024px;
     padding: 0 15px;
     margin: auto;

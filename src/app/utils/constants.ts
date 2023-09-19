@@ -1,0 +1,1 @@
+export var apiBaseUrl: String = 'https://notes.eizarphyo.me/noteapp/v1';
