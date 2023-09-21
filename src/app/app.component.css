@@ -302,10 +302,6 @@
     padding: 15px 20px 10px;
 }
 
-.note .details {
-    /* margin-bottom: 20px; */
-}
-
 .note .details:hover {
     cursor: pointer;
 }
